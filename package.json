@@ -1,0 +1,48 @@
+{
+  "name": "iris",
+  "version": "0.1.0",
+  "description": "IA-first UI DSL - Intermediate representation for AI-generated UI code",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "iris": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build:grammar": "peggy --format es --output src/parser/grammar.ts spec/grammar.peg && sed -i '' '1s|^|// @ts-nocheck\\n|' src/parser/grammar.ts || sed -i '1s|^|// @ts-nocheck\\n|' src/parser/grammar.ts",
+    "build": "npm run build:grammar && tsc",
+    "dev": "npm run build:grammar && tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "setup": "bash setup.sh",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "dsl",
+    "ui",
+    "ai",
+    "compiler",
+    "react",
+    "tailwind"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "peggy": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
+

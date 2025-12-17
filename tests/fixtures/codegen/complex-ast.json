@@ -1,0 +1,49 @@
+{
+  "type": "VStack",
+  "gap": 4,
+  "marginBottom": 6,
+  "paddingBottom": 6,
+  "borderBottom": true,
+  "children": [
+    {
+      "type": "Repeat",
+      "count": 2,
+      "child": {
+        "type": "HStack",
+        "gap": 4,
+        "children": [
+          {
+            "type": "Skeleton",
+            "width": 16,
+            "height": 16,
+            "rounded": true,
+            "shrink": false
+          },
+          {
+            "type": "VStack",
+            "gap": 2,
+            "flex": 1,
+            "children": [
+              {
+                "type": "Skeleton",
+                "height": 4,
+                "width": 0.75
+              },
+              {
+                "type": "Skeleton",
+                "height": 3,
+                "width": 0.5
+              }
+            ]
+          },
+          {
+            "type": "Skeleton",
+            "height": 4,
+            "width": 16
+          }
+        ]
+      }
+    }
+  ]
+}
+

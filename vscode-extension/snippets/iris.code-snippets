@@ -1,0 +1,87 @@
+{
+  "VStack": {
+    "prefix": "V",
+    "body": [
+      "V($1){",
+      "  $0",
+      "}"
+    ],
+    "description": "VStack - Vertical stack"
+  },
+  "VStack with gap": {
+    "prefix": "Vg",
+    "body": [
+      "V(g${1:4}){",
+      "  $0",
+      "}"
+    ],
+    "description": "VStack with gap"
+  },
+  "HStack": {
+    "prefix": "H",
+    "body": [
+      "H($1){",
+      "  $0",
+      "}"
+    ],
+    "description": "HStack - Horizontal stack"
+  },
+  "HStack with gap": {
+    "prefix": "Hg",
+    "body": [
+      "H(g${1:4}){",
+      "  $0",
+      "}"
+    ],
+    "description": "HStack with gap"
+  },
+  "Skeleton": {
+    "prefix": "S",
+    "body": [
+      "S($1)"
+    ],
+    "description": "Skeleton element"
+  },
+  "Skeleton with width and height": {
+    "prefix": "Swh",
+    "body": [
+      "S(w${1:16} h${2:16})"
+    ],
+    "description": "Skeleton with width and height"
+  },
+  "Skeleton rounded": {
+    "prefix": "Sr",
+    "body": [
+      "S(w${1:16} h${2:16} r)"
+    ],
+    "description": "Skeleton with rounded corners"
+  },
+  "Repeat": {
+    "prefix": "x",
+    "body": [
+      "x${1:3}{",
+      "  $0",
+      "}"
+    ],
+    "description": "Repeat element"
+  },
+  "VStack with padding and margin": {
+    "prefix": "Vpm",
+    "body": [
+      "V(p${1:4} m${2:4} g${3:4}){",
+      "  $0",
+      "}"
+    ],
+    "description": "VStack with padding and margin"
+  },
+  "Card pattern": {
+    "prefix": "card",
+    "body": [
+      "V(p${1:4} m${2:4} bb g${3:4}){",
+      "  $0",
+      "}"
+    ],
+    "description": "Card pattern with padding, margin, border and gap"
+  }
+}
+

@@ -1,0 +1,183 @@
+{
+  // Helper functions for building AST
+  function buildVStack(params, children) {
+    return {
+      type: 'VStack',
+      ...params,
+      children: children || []
+    };
+  }
+  
+  function buildHStack(params, children) {
+    return {
+      type: 'HStack',
+      ...params,
+      children: children || []
+    };
+  }
+  
+  function buildSkeleton(params) {
+    return {
+      type: 'Skeleton',
+      ...params
+    };
+  }
+  
+  function buildRepeat(count, child) {
+    return {
+      type: 'Repeat',
+      count: parseInt(count, 10),
+      child: child
+    };
+  }
+  
+  function parseParams(params) {
+    const result = {};
+    if (!params || params.length === 0) return result;
+    
+    for (const param of params) {
+      const [ident, value] = param;
+      switch (ident) {
+        // Gap
+        case 'g': result.gap = value; break;
+        // Margin
+        case 'm': result.margin = value; break;
+        case 'mt': result.marginTop = value; break;
+        case 'mr': result.marginRight = value; break;
+        case 'mb': result.marginBottom = value; break;
+        case 'ml': result.marginLeft = value; break;
+        case 'mx': result.marginX = value; break;
+        case 'my': result.marginY = value; break;
+        // Padding
+        case 'p': result.padding = value; break;
+        case 'pt': result.paddingTop = value; break;
+        case 'pr': result.paddingRight = value; break;
+        case 'pb': result.paddingBottom = value; break;
+        case 'pl': result.paddingLeft = value; break;
+        case 'px': result.paddingX = value; break;
+        case 'py': result.paddingY = value; break;
+        // Border
+        case 'b': result.border = true; break;
+        case 'bt': result.borderTop = true; break;
+        case 'br': result.borderRight = true; break;
+        case 'bb': result.borderBottom = true; break;
+        case 'bl': result.borderLeft = true; break;
+        // Flex
+        case 'f': result.flex = value !== undefined ? value : 1; break;
+        // Width
+        case 'w': 
+          if (value === 'auto' || value === 'full' || value === 'screen') {
+            result.width = value;
+          } else if (value !== undefined) {
+            result.width = value;
+          }
+          break;
+        // Height
+        case 'h': 
+          if (value === 'auto' || value === 'full' || value === 'screen') {
+            result.height = value;
+          } else if (value !== undefined) {
+            result.height = value;
+          }
+          break;
+        // Skeleton properties
+        case 'r': result.rounded = true; break;
+        case 'sh0': result.shrink = false; break;
+        case 'bg': result.background = value || 'gray-200'; break;
+      }
+    }
+    return result;
+  }
+}
+
+Program
+  = _ first:Node rest:(_ Node)* _ { 
+    const nodes = [first, ...rest.map(r => r[1])];
+    return nodes.length === 1 ? nodes[0] : { type: 'Program', children: nodes }; 
+  }
+
+Node
+  = Repeat
+  / Stack
+  / Skeleton
+
+Repeat
+  = 'x' count:Number _ block:Block {
+    return buildRepeat(count, block.length === 1 ? block[0] : { type: 'VStack', children: block });
+  }
+
+Stack
+  = type:('V' / 'H') params:Params? _ block:Block {
+    const parsedParams = parseParams(params);
+    const children = block || [];
+    return type === 'V' ? buildVStack(parsedParams, children) : buildHStack(parsedParams, children);
+  }
+
+Skeleton
+  = 'S' params:Params? {
+    const parsedParams = parseParams(params);
+    return buildSkeleton(parsedParams);
+  }
+
+Params
+  = '(' _ first:Param rest:(_ Param)* _ ')' {
+    return [first, ...rest.map(r => r[1])];
+  }
+
+Param
+  = (ident:SpecialIdent {
+    // Special tokens (e.g., sh0) - try first
+    return [ident, undefined];
+  } / ident:Ident value:(AbsoluteValue / Number) {
+    // Ident followed by absolute value or number (e.g., w-full, w16, mb6)
+    return [ident, value];
+  } / ident:Ident _ absValue:AbsoluteValue {
+    // Ident followed by space and absolute value (e.g., w full, h screen)
+    return [ident, absValue];
+  } / ident:Ident _ 'auto' {
+    // Ident followed by space and 'auto' (e.g., w auto)
+    return [ident, 'auto'];
+  } / ident:Ident {
+    // Just Ident (e.g., bb, r, b)
+    return [ident, undefined];
+  })
+
+Block
+  = '{' _ first:Node rest:(_ Node)* _ '}' { 
+    return [first, ...rest.map(r => r[1])];
+  }
+
+Ident
+  = [a-zA-Z]+ { return text(); }
+  
+SpecialIdent
+  = 'sh0' { return 'sh0'; }
+
+AbsoluteValue
+  = 'full' { return 'full'; }
+  / 'screen' { return 'screen'; }
+  / 'auto' { return 'auto'; }
+
+Number
+  = IntegerNumber
+  / DecimalNumber
+
+IntegerNumber
+  = int:[0-9]+ frac:('.' [0-9]+)? {
+    const numStr = int.join('') + (frac ? frac[0] + frac[1].join('') : '');
+    return parseFloat(numStr);
+  }
+
+DecimalNumber
+  = '.' frac:[0-9]+ {
+    const numStr = '0.' + frac.join('');
+    return parseFloat(numStr);
+  }
+
+_
+  = ([ \t\n\r] / Comment)* { return null; }
+
+Comment
+  = '//' [^\n\r]* { return null; }
+  / '/*' (!'*/' .)* '*/' { return null; }
+

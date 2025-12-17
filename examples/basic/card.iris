@@ -1,0 +1,16 @@
+V(g4 mb6 pb6 bb){
+  H(g4 mb4){
+    S(w20 h20 r)
+    V(g2 f1){
+      S(h5 w.8)
+      S(h4 w.6)
+      S(h3 w.4)
+    }
+  }
+  S(h32 w1)
+  H(g2){
+    S(h4 w.3)
+    S(h4 w.3)
+    S(h4 w.3)
+  }
+}

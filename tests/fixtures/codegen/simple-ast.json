@@ -1,0 +1,11 @@
+{
+  "type": "VStack",
+  "gap": 4,
+  "children": [
+    {
+      "type": "Skeleton",
+      "height": 4
+    }
+  ]
+}
+

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "IRIS",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#parameters"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.iris",
+          "match": "//.*"
+        },
+        {
+          "name": "comment.block.iris",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.iris",
+          "match": "\\b(V|H|S|x)\\b"
+        },
+        {
+          "name": "keyword.other.iris",
+          "match": "\\b(auto|full|screen)\\b"
+        }
+      ]
+    },
+    "parameters": {
+      "patterns": [
+        {
+          "name": "variable.parameter.iris",
+          "match": "\\b(g|p|pt|pr|pb|pl|px|py|m|mt|mr|mb|ml|mx|my|b|bt|br|bb|bl|f|w|h|r|sh0|bg)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.iris",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.iris",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "include": "#strings"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.iris"
+}
+

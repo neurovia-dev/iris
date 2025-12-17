@@ -1,0 +1,34 @@
+// Example demonstrating expanded vocabulary of IRIS v0.5
+// This example shows complete padding, margin, border and absolute values
+
+V(p4 m6 g8){
+  // Header with padding and border
+  V(p4 pb6 bb g4){
+    S(h8 w-full) // Title with full width
+    S(h4 w.75)   // Subtitle
+  }
+  
+  // Card with complete padding and margin
+  V(p4 pt6 pr8 pb4 pl2 mx4 my2 bt br bb bl g4){
+    S(w16 h16 r) // Avatar
+    V(g2){
+      S(h6 w-full) // Name
+      S(h4 w.5)    // Email
+    }
+  }
+  
+  // Skeleton with absolute values
+  S(w-screen h-32 bg-gray-200) // Banner full width
+  
+  // List with repeat
+  x3{
+    H(g4 mb4){
+      S(w16 h16 r sh0) // Icon
+      V(g2 flex-1){
+        S(h4 w-full) // Title
+        S(h3 w.75)   // Description
+      }
+    }
+  }
+}
+

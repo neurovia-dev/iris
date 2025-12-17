@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  iris:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm test
+    environment:
+      - NODE_ENV=development
+

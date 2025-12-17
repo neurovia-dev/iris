@@ -1,0 +1,42 @@
+V(g6){
+  V(g4 mb6 pb6 bb){
+    H(g4){
+      S(w12 h12 r)
+      V(g2 f1){
+        S(h5 w.6)
+        S(h4 w.4)
+      }
+    }
+  }
+  H(g4){
+    V(g4 f1){
+      S(h32 w1 mb4)
+      H(g2){
+        S(h4 w.3)
+        S(h4 w.3)
+        S(h4 w.3)
+      }
+    }
+    V(g4 f1){
+      S(h32 w1 mb4)
+      H(g2){
+        S(h4 w.3)
+        S(h4 w.3)
+        S(h4 w.3)
+      }
+    }
+  }
+  V(g4 mb6 pb6 bb){
+    x4{
+      H(g4 mb4){
+        S(w16 h16 r sh0)
+        V(g2 f1){
+          S(h4 w.8)
+          S(h3 w.6)
+        }
+        S(w12 h12 r)
+      }
+    }
+  }
+}
+

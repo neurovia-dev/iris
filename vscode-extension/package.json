@@ -1,0 +1,43 @@
+{
+  "name": "iris-language",
+  "displayName": "IRIS Language Support",
+  "description": "Syntax highlighting and snippets for IRIS DSL",
+  "version": "0.1.0",
+  "publisher": "iris",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "iris",
+        "aliases": [
+          "IRIS",
+          "iris"
+        ],
+        "extensions": [
+          ".iris"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "iris",
+        "scopeName": "source.iris",
+        "path": "./syntaxes/iris.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "iris",
+        "path": "./snippets/iris.code-snippets"
+      }
+    ]
+  }
+}
+

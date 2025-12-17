@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Integration Tests > Snapshot tests > gera snapshot do AST do exemplo do README 1`] = `
+{
+  "borderBottom": true,
+  "children": [
+    {
+      "child": {
+        "children": [
+          {
+            "height": 16,
+            "rounded": true,
+            "shrink": false,
+            "type": "Skeleton",
+            "width": 16,
+          },
+          {
+            "children": [
+              {
+                "height": 4,
+                "type": "Skeleton",
+                "width": 0.75,
+              },
+              {
+                "height": 3,
+                "type": "Skeleton",
+                "width": 0.5,
+              },
+            ],
+            "flex": 1,
+            "gap": 2,
+            "type": "VStack",
+          },
+          {
+            "height": 4,
+            "type": "Skeleton",
+            "width": 16,
+          },
+        ],
+        "gap": 4,
+        "type": "HStack",
+      },
+      "count": 2,
+      "type": "Repeat",
+    },
+  ],
+  "gap": 4,
+  "marginBottom": 6,
+  "paddingBottom": 6,
+  "type": "VStack",
+}
+`;
+
+exports[`Integration Tests > Snapshot tests > gera snapshot do output React do exemplo do README 1`] = `"<div className="flex flex-col gap-4 mb-6 pb-6 border-b"> <div className="flex gap-4"> <Skeleton className="w-16 h-16 rounded-full shrink-0" /> <div className="flex flex-col gap-2 flex-1"> <Skeleton className="w-[75%] h-4" /> <Skeleton className="w-[50%] h-3" /> </div> <Skeleton className="w-16 h-4" /> </div> <div className="flex gap-4"> <Skeleton className="w-16 h-16 rounded-full shrink-0" /> <div className="flex flex-col gap-2 flex-1"> <Skeleton className="w-[75%] h-4" /> <Skeleton className="w-[50%] h-3" /> </div> <Skeleton className="w-16 h-4" /> </div> </div>"`;
